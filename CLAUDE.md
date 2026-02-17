@@ -42,6 +42,7 @@ Laputa App is a personal knowledge and life management desktop app, built with T
   - `feat: restructure sidebar with collapsible sections`
   - `fix: editor scroll overflow`
   One concern per commit. If you're doing a multi-phase task, commit after EACH phase, not at the end. This makes reviews, reverts, and bisecting possible.
+- **Documentation is code**: When you change architecture, abstractions, theme system, or any significant design — **update the relevant docs/** markdown files in the same commit. Documentation should always reflect current reality, not past state. Push docs changes together with code changes.
 
 ### Testing
 - `pnpm test` runs Vitest (unit tests)

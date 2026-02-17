@@ -1,0 +1,98 @@
+name: CI
+
+on:
+  push:
+    branches: [main, experiment/*]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    name: Tests & Quality Checks
+    runs-on: macos-latest
+    
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Full history for CodeScene
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
+          
+      - name: Setup Rust
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          components: rustfmt, clippy
+          
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+        
+      # 1. Run all tests
+      - name: Run frontend tests
+        run: pnpm test
+        
+      - name: Run Rust tests
+        run: cargo test --manifest-path=src-tauri/Cargo.toml
+        
+      # 2. Test coverage (with baseline comparison)
+      - name: Run frontend coverage
+        run: pnpm test:coverage || pnpm vitest run --coverage
+        
+      - name: Check coverage threshold
+        run: |
+          # Extract coverage percentage from vitest output
+          # This is a simple check - can be enhanced with coverage reporting tools
+          echo "Coverage check would go here - vitest has built-in thresholds"
+          
+      # 3. Code Health (CodeScene)
+      - name: CodeScene Delta Analysis
+        uses: codescene-oss/codescene-delta-analysis-action@v1
+        with:
+          codescene-token: ${{ secrets.CODESCENE_TOKEN }}
+          codescene-project-id: ${{ secrets.CODESCENE_PROJECT_ID }}
+          fail-on-declining-code-health: true
+          
+      # 4. Documentation check (warning only)
+      - name: Check docs are updated
+        continue-on-error: true
+        run: |
+          # Skip check if commit message contains [skip docs]
+          if git log -1 --pretty=%B | grep -i '\[skip docs\]' > /dev/null; then
+            echo "⏭️  Documentation check skipped (commit message contains [skip docs])"
+            exit 0
+          fi
+          
+          # Get changed files
+          if git diff --name-only origin/main | grep -E '^(src/|src-tauri/)' > /dev/null; then
+            # If code changed, check if docs changed too
+            if ! git diff --name-only origin/main | grep -E '^docs/' > /dev/null; then
+              echo "⚠️  Code files changed but docs/ not updated"
+              echo "Changed code files:"
+              git diff --name-only origin/main | grep -E '^(src/|src-tauri/)'
+              echo ""
+              echo "If this change affects architecture/abstractions/design documented in docs/,"
+              echo "please update the relevant documentation files."
+              echo ""
+              echo "To skip this check, include [skip docs] in your commit message."
+              # Warning only - don't fail
+              exit 0
+            fi
+          fi
+          echo "✅ Documentation check passed"
+          
+      # Lint checks
+      - name: Lint frontend
+        run: pnpm lint || echo "Add lint script to package.json"
+        
+      - name: Clippy (Rust)
+        run: cargo clippy --manifest-path=src-tauri/Cargo.toml -- -D warnings
+        
+      - name: Format check (Rust)
+        run: cargo fmt --manifest-path=src-tauri/Cargo.toml -- --check

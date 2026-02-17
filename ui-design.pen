@@ -3115,16 +3115,6 @@
                               "children": [
                                 {
                                   "type": "icon_font",
-                                  "id": "uvwS0",
-                                  "name": "projChev",
-                                  "width": 12,
-                                  "height": 12,
-                                  "iconFontName": "chevron-down",
-                                  "iconFontFamily": "lucide",
-                                  "fill": "$--muted-foreground"
-                                },
-                                {
-                                  "type": "icon_font",
                                   "id": "t5WJJ",
                                   "name": "projIcon",
                                   "width": 18,
@@ -3142,35 +3132,19 @@
                                   "content": "Projects",
                                   "fontFamily": "Inter",
                                   "fontSize": 13,
-                                  "fontWeight": "600"
+                                  "fontWeight": "500"
                                 }
                               ]
                             },
                             {
-                              "type": "frame",
-                              "id": "ILCh9",
-                              "name": "countProj",
-                              "height": 20,
-                              "fill": "$--secondary",
-                              "cornerRadius": 9999,
-                              "padding": [
-                                0,
-                                6
-                              ],
-                              "justifyContent": "center",
-                              "alignItems": "center",
-                              "children": [
-                                {
-                                  "type": "text",
-                                  "id": "rz7yY",
-                                  "name": "projBadgeTxt",
-                                  "fill": "$--muted-foreground",
-                                  "content": "4",
-                                  "fontFamily": "Inter",
-                                  "fontSize": 10,
-                                  "fontWeight": "600"
-                                }
-                              ]
+                              "type": "icon_font",
+                              "id": "FKwSS",
+                              "name": "projChev",
+                              "width": 14,
+                              "height": 14,
+                              "iconFontName": "chevron-down",
+                              "iconFontFamily": "lucide",
+                              "fill": "$--muted-foreground"
                             }
                           ]
                         },
@@ -3301,16 +3275,6 @@
                               "children": [
                                 {
                                   "type": "icon_font",
-                                  "id": "N4Mv7",
-                                  "name": "expChev",
-                                  "width": 12,
-                                  "height": 12,
-                                  "iconFontName": "chevron-right",
-                                  "iconFontFamily": "lucide",
-                                  "fill": "$--muted-foreground"
-                                },
-                                {
-                                  "type": "icon_font",
                                   "id": "sguhh",
                                   "name": "expIcon",
                                   "width": 18,
@@ -3328,35 +3292,19 @@
                                   "content": "Experiments",
                                   "fontFamily": "Inter",
                                   "fontSize": 13,
-                                  "fontWeight": "600"
+                                  "fontWeight": "500"
                                 }
                               ]
                             },
                             {
-                              "type": "frame",
-                              "id": "PCYKK",
-                              "name": "countExp",
-                              "height": 20,
-                              "fill": "$--secondary",
-                              "cornerRadius": 9999,
-                              "padding": [
-                                0,
-                                6
-                              ],
-                              "justifyContent": "center",
-                              "alignItems": "center",
-                              "children": [
-                                {
-                                  "type": "text",
-                                  "id": "UApqq",
-                                  "name": "expBadgeTxt",
-                                  "fill": "$--muted-foreground",
-                                  "content": "2",
-                                  "fontFamily": "Inter",
-                                  "fontSize": 10,
-                                  "fontWeight": "600"
-                                }
-                              ]
+                              "type": "icon_font",
+                              "id": "ijaoq",
+                              "name": "expChev",
+                              "width": 14,
+                              "height": 14,
+                              "iconFontName": "chevron-right",
+                              "iconFontFamily": "lucide",
+                              "fill": "$--muted-foreground"
                             }
                           ]
                         }
@@ -3408,16 +3356,6 @@
                               "children": [
                                 {
                                   "type": "icon_font",
-                                  "id": "w2Xcb",
-                                  "name": "respChev",
-                                  "width": 12,
-                                  "height": 12,
-                                  "iconFontName": "chevron-right",
-                                  "iconFontFamily": "lucide",
-                                  "fill": "$--muted-foreground"
-                                },
-                                {
-                                  "type": "icon_font",
                                   "id": "Em4ns",
                                   "name": "respIcon",
                                   "width": 18,
@@ -3435,35 +3373,19 @@
                                   "content": "Responsibilities",
                                   "fontFamily": "Inter",
                                   "fontSize": 13,
-                                  "fontWeight": "600"
+                                  "fontWeight": "500"
                                 }
                               ]
                             },
                             {
-                              "type": "frame",
-                              "id": "7DwTK",
-                              "name": "countResp",
-                              "height": 20,
-                              "fill": "$--secondary",
-                              "cornerRadius": 9999,
-                              "padding": [
-                                0,
-                                6
-                              ],
-                              "justifyContent": "center",
-                              "alignItems": "center",
-                              "children": [
-                                {
-                                  "type": "text",
-                                  "id": "NNRL5",
-                                  "name": "respBadgeTxt",
-                                  "fill": "$--muted-foreground",
-                                  "content": "3",
-                                  "fontFamily": "Inter",
-                                  "fontSize": 10,
-                                  "fontWeight": "600"
-                                }
-                              ]
+                              "type": "icon_font",
+                              "id": "6hDdQ",
+                              "name": "respChev",
+                              "width": 14,
+                              "height": 14,
+                              "iconFontName": "chevron-right",
+                              "iconFontFamily": "lucide",
+                              "fill": "$--muted-foreground"
                             }
                           ]
                         }
@@ -3515,16 +3437,6 @@
                               "children": [
                                 {
                                   "type": "icon_font",
-                                  "id": "FaBKs",
-                                  "name": "respChev",
-                                  "width": 12,
-                                  "height": 12,
-                                  "iconFontName": "chevron-right",
-                                  "iconFontFamily": "lucide",
-                                  "fill": "$--muted-foreground"
-                                },
-                                {
-                                  "type": "icon_font",
                                   "id": "I2J1R",
                                   "name": "respIcon",
                                   "width": 18,
@@ -3542,35 +3454,19 @@
                                   "content": "Procedures",
                                   "fontFamily": "Inter",
                                   "fontSize": 13,
-                                  "fontWeight": "600"
+                                  "fontWeight": "500"
                                 }
                               ]
                             },
                             {
-                              "type": "frame",
-                              "id": "KI7En",
-                              "name": "countResp",
-                              "height": 20,
-                              "fill": "$--secondary",
-                              "cornerRadius": 9999,
-                              "padding": [
-                                0,
-                                6
-                              ],
-                              "justifyContent": "center",
-                              "alignItems": "center",
-                              "children": [
-                                {
-                                  "type": "text",
-                                  "id": "xtE6F",
-                                  "name": "respBadgeTxt",
-                                  "fill": "$--muted-foreground",
-                                  "content": "3",
-                                  "fontFamily": "Inter",
-                                  "fontSize": 10,
-                                  "fontWeight": "600"
-                                }
-                              ]
+                              "type": "icon_font",
+                              "id": "meEIL",
+                              "name": "procChev",
+                              "width": 14,
+                              "height": 14,
+                              "iconFontName": "chevron-right",
+                              "iconFontFamily": "lucide",
+                              "fill": "$--muted-foreground"
                             }
                           ]
                         }
@@ -3622,16 +3518,6 @@
                               "children": [
                                 {
                                   "type": "icon_font",
-                                  "id": "1IPeC",
-                                  "name": "peopleChev",
-                                  "width": 12,
-                                  "height": 12,
-                                  "iconFontName": "chevron-right",
-                                  "iconFontFamily": "lucide",
-                                  "fill": "$--muted-foreground"
-                                },
-                                {
-                                  "type": "icon_font",
                                   "id": "jOmVa",
                                   "name": "peopleIcon",
                                   "width": 18,
@@ -3649,35 +3535,19 @@
                                   "content": "People",
                                   "fontFamily": "Inter",
                                   "fontSize": 13,
-                                  "fontWeight": "600"
+                                  "fontWeight": "500"
                                 }
                               ]
                             },
                             {
-                              "type": "frame",
-                              "id": "VOlRP",
-                              "name": "countPeople",
-                              "height": 20,
-                              "fill": "$--secondary",
-                              "cornerRadius": 9999,
-                              "padding": [
-                                0,
-                                6
-                              ],
-                              "justifyContent": "center",
-                              "alignItems": "center",
-                              "children": [
-                                {
-                                  "type": "text",
-                                  "id": "6tBQJ",
-                                  "name": "peopleBadgeTxt",
-                                  "fill": "$--muted-foreground",
-                                  "content": "8",
-                                  "fontFamily": "Inter",
-                                  "fontSize": 10,
-                                  "fontWeight": "600"
-                                }
-                              ]
+                              "type": "icon_font",
+                              "id": "TkuS1",
+                              "name": "peopleChev",
+                              "width": 14,
+                              "height": 14,
+                              "iconFontName": "chevron-right",
+                              "iconFontFamily": "lucide",
+                              "fill": "$--muted-foreground"
                             }
                           ]
                         }
@@ -3729,16 +3599,6 @@
                               "children": [
                                 {
                                   "type": "icon_font",
-                                  "id": "h8PjY",
-                                  "name": "eventsChev",
-                                  "width": 12,
-                                  "height": 12,
-                                  "iconFontName": "chevron-right",
-                                  "iconFontFamily": "lucide",
-                                  "fill": "$--muted-foreground"
-                                },
-                                {
-                                  "type": "icon_font",
                                   "id": "ELRMi",
                                   "name": "eventsIcon",
                                   "width": 18,
@@ -3756,35 +3616,19 @@
                                   "content": "Events",
                                   "fontFamily": "Inter",
                                   "fontSize": 13,
-                                  "fontWeight": "600"
+                                  "fontWeight": "500"
                                 }
                               ]
                             },
                             {
-                              "type": "frame",
-                              "id": "L5am7",
-                              "name": "countEvents",
-                              "height": 20,
-                              "fill": "$--secondary",
-                              "cornerRadius": 9999,
-                              "padding": [
-                                0,
-                                6
-                              ],
-                              "justifyContent": "center",
-                              "alignItems": "center",
-                              "children": [
-                                {
-                                  "type": "text",
-                                  "id": "WtvSC",
-                                  "name": "eventsBadgeTxt",
-                                  "fill": "$--muted-foreground",
-                                  "content": "5",
-                                  "fontFamily": "Inter",
-                                  "fontSize": 10,
-                                  "fontWeight": "600"
-                                }
-                              ]
+                              "type": "icon_font",
+                              "id": "TZwK8",
+                              "name": "eventsChev",
+                              "width": 14,
+                              "height": 14,
+                              "iconFontName": "chevron-right",
+                              "iconFontFamily": "lucide",
+                              "fill": "$--muted-foreground"
                             }
                           ]
                         }
@@ -3836,16 +3680,6 @@
                               "children": [
                                 {
                                   "type": "icon_font",
-                                  "id": "oS2NT",
-                                  "name": "eventsChev",
-                                  "width": 12,
-                                  "height": 12,
-                                  "iconFontName": "chevron-right",
-                                  "iconFontFamily": "lucide",
-                                  "fill": "$--muted-foreground"
-                                },
-                                {
-                                  "type": "icon_font",
                                   "id": "Q57kF",
                                   "name": "eventsIcon",
                                   "width": 18,
@@ -3863,35 +3697,19 @@
                                   "content": "Topics",
                                   "fontFamily": "Inter",
                                   "fontSize": 13,
-                                  "fontWeight": "600"
+                                  "fontWeight": "500"
                                 }
                               ]
                             },
                             {
-                              "type": "frame",
-                              "id": "kScKf",
-                              "name": "countEvents",
-                              "height": 20,
-                              "fill": "$--secondary",
-                              "cornerRadius": 9999,
-                              "padding": [
-                                0,
-                                6
-                              ],
-                              "justifyContent": "center",
-                              "alignItems": "center",
-                              "children": [
-                                {
-                                  "type": "text",
-                                  "id": "lhfW5",
-                                  "name": "eventsBadgeTxt",
-                                  "fill": "$--muted-foreground",
-                                  "content": "5",
-                                  "fontFamily": "Inter",
-                                  "fontSize": 10,
-                                  "fontWeight": "600"
-                                }
-                              ]
+                              "type": "icon_font",
+                              "id": "nzAcm",
+                              "name": "topicsChev",
+                              "width": 14,
+                              "height": 14,
+                              "iconFontName": "chevron-right",
+                              "iconFontFamily": "lucide",
+                              "fill": "$--muted-foreground"
                             }
                           ]
                         }
