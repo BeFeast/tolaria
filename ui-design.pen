@@ -5433,6 +5433,803 @@
           ]
         }
       ]
+    },
+    {
+      "type": "frame",
+      "id": "dt0",
+      "name": "Draggable Tabs — Default State",
+      "width": 800,
+      "height": 120,
+      "layout": "vertical",
+      "fill": "$--sidebar",
+      "theme": {
+        "Mode": "Light"
+      },
+      "children": [
+        {
+          "type": "text",
+          "id": "dt1",
+          "name": "frameLabel",
+          "content": "Default: tabs are draggable (grab cursor on hover)",
+          "fontFamily": "Inter",
+          "fontSize": 11,
+          "fontWeight": "normal",
+          "fill": "$--muted-foreground",
+          "padding": [
+            8,
+            12
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "dt2",
+          "name": "Tab Bar Default",
+          "width": "fill_container",
+          "height": 45,
+          "fill": "$--sidebar",
+          "stroke": {
+            "align": "inside",
+            "thickness": {
+              "bottom": 1
+            },
+            "fill": "$--sidebar-border"
+          },
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "dt3",
+              "name": "Tab Active",
+              "height": "fill_container",
+              "fill": "$--background",
+              "stroke": {
+                "align": "inside",
+                "thickness": {
+                  "right": 1
+                },
+                "fill": "$--border"
+              },
+              "gap": 6,
+              "padding": [
+                0,
+                14
+              ],
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "dt4",
+                  "fill": "$--foreground",
+                  "content": "Laputa App",
+                  "fontFamily": "Inter",
+                  "fontSize": 12,
+                  "fontWeight": "500"
+                },
+                {
+                  "type": "icon_font",
+                  "id": "dt5",
+                  "width": 14,
+                  "height": 14,
+                  "iconFontName": "x",
+                  "iconFontFamily": "lucide",
+                  "fill": "$--muted-foreground"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "dt6",
+              "name": "Tab Inactive",
+              "height": "fill_container",
+              "stroke": {
+                "align": "inside",
+                "thickness": {
+                  "right": 1,
+                  "bottom": 1
+                },
+                "fill": "$--sidebar-border"
+              },
+              "gap": 6,
+              "padding": [
+                0,
+                14
+              ],
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "dt7",
+                  "fill": "$--muted-foreground",
+                  "content": "Portfolio Rewrite",
+                  "fontFamily": "Inter",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "icon_font",
+                  "id": "dt8",
+                  "opacity": 0,
+                  "width": 14,
+                  "height": 14,
+                  "iconFontName": "x",
+                  "iconFontFamily": "lucide",
+                  "fill": "$--muted-foreground"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "dt9",
+              "name": "Tab Inactive 2",
+              "height": "fill_container",
+              "stroke": {
+                "align": "inside",
+                "thickness": {
+                  "right": 1,
+                  "bottom": 1
+                },
+                "fill": "$--sidebar-border"
+              },
+              "gap": 6,
+              "padding": [
+                0,
+                14
+              ],
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "dta",
+                  "fill": "$--muted-foreground",
+                  "content": "Weekly Review",
+                  "fontFamily": "Inter",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "icon_font",
+                  "id": "dtb",
+                  "opacity": 0,
+                  "width": 14,
+                  "height": 14,
+                  "iconFontName": "x",
+                  "iconFontFamily": "lucide",
+                  "fill": "$--muted-foreground"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "dtc",
+              "name": "Tab Inactive 3",
+              "height": "fill_container",
+              "stroke": {
+                "align": "inside",
+                "thickness": {
+                  "right": 1,
+                  "bottom": 1
+                },
+                "fill": "$--sidebar-border"
+              },
+              "gap": 6,
+              "padding": [
+                0,
+                14
+              ],
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "dtd",
+                  "fill": "$--muted-foreground",
+                  "content": "Workout Log",
+                  "fontFamily": "Inter",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "icon_font",
+                  "id": "dte",
+                  "opacity": 0,
+                  "width": 14,
+                  "height": 14,
+                  "iconFontName": "x",
+                  "iconFontFamily": "lucide",
+                  "fill": "$--muted-foreground"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "dtf",
+              "name": "tabSpacer",
+              "width": "fill_container",
+              "height": "fill_container",
+              "stroke": {
+                "align": "inside",
+                "thickness": {
+                  "bottom": 1
+                },
+                "fill": "$--border"
+              }
+            },
+            {
+              "type": "frame",
+              "id": "dtg",
+              "name": "tabControls",
+              "height": "fill_container",
+              "stroke": {
+                "align": "inside",
+                "thickness": {
+                  "bottom": 1,
+                  "left": 1
+                },
+                "fill": "$--border"
+              },
+              "gap": 12,
+              "padding": [
+                0,
+                12
+              ],
+              "justifyContent": "space_around",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon_font",
+                  "id": "dth",
+                  "width": 16,
+                  "height": 16,
+                  "iconFontName": "plus",
+                  "iconFontFamily": "phosphor",
+                  "fill": "$--muted-foreground"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "dti",
+          "name": "cursorNote",
+          "content": "cursor: grab → grabbing during drag",
+          "fontFamily": "Inter",
+          "fontSize": 10,
+          "fontWeight": "normal",
+          "fill": "$--muted-foreground",
+          "padding": [
+            4,
+            12
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "dtj",
+      "name": "Draggable Tabs — Dragging (Tab Being Moved)",
+      "width": 800,
+      "height": 120,
+      "layout": "vertical",
+      "fill": "$--sidebar",
+      "theme": {
+        "Mode": "Light"
+      },
+      "children": [
+        {
+          "type": "text",
+          "id": "dtk",
+          "name": "frameLabel2",
+          "content": "Dragging: \"Portfolio Rewrite\" is being dragged left (opacity 0.5, blue drop indicator)",
+          "fontFamily": "Inter",
+          "fontSize": 11,
+          "fontWeight": "normal",
+          "fill": "$--muted-foreground",
+          "padding": [
+            8,
+            12
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "dtl",
+          "name": "Tab Bar Dragging",
+          "width": "fill_container",
+          "height": 45,
+          "fill": "$--sidebar",
+          "stroke": {
+            "align": "inside",
+            "thickness": {
+              "bottom": 1
+            },
+            "fill": "$--sidebar-border"
+          },
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "dtm",
+              "name": "Drop Indicator",
+              "width": 2,
+              "height": 30,
+              "fill": "$--primary",
+              "cornerRadius": 1
+            },
+            {
+              "type": "frame",
+              "id": "dtn",
+              "name": "Tab Active",
+              "height": "fill_container",
+              "fill": "$--background",
+              "stroke": {
+                "align": "inside",
+                "thickness": {
+                  "right": 1
+                },
+                "fill": "$--border"
+              },
+              "gap": 6,
+              "padding": [
+                0,
+                14
+              ],
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "dto",
+                  "fill": "$--foreground",
+                  "content": "Laputa App",
+                  "fontFamily": "Inter",
+                  "fontSize": 12,
+                  "fontWeight": "500"
+                },
+                {
+                  "type": "icon_font",
+                  "id": "dtp",
+                  "width": 14,
+                  "height": 14,
+                  "iconFontName": "x",
+                  "iconFontFamily": "lucide",
+                  "fill": "$--muted-foreground"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "dtq",
+              "name": "Tab Dragging (ghost)",
+              "height": "fill_container",
+              "opacity": 0.5,
+              "stroke": {
+                "align": "inside",
+                "thickness": {
+                  "right": 1,
+                  "bottom": 1
+                },
+                "fill": "$--sidebar-border"
+              },
+              "gap": 6,
+              "padding": [
+                0,
+                14
+              ],
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "dtr",
+                  "fill": "$--muted-foreground",
+                  "content": "Portfolio Rewrite",
+                  "fontFamily": "Inter",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "icon_font",
+                  "id": "dts",
+                  "opacity": 0,
+                  "width": 14,
+                  "height": 14,
+                  "iconFontName": "x",
+                  "iconFontFamily": "lucide",
+                  "fill": "$--muted-foreground"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "dtt",
+              "name": "Tab Inactive 2",
+              "height": "fill_container",
+              "stroke": {
+                "align": "inside",
+                "thickness": {
+                  "right": 1,
+                  "bottom": 1
+                },
+                "fill": "$--sidebar-border"
+              },
+              "gap": 6,
+              "padding": [
+                0,
+                14
+              ],
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "dtu",
+                  "fill": "$--muted-foreground",
+                  "content": "Weekly Review",
+                  "fontFamily": "Inter",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "dtv",
+              "name": "Tab Inactive 3",
+              "height": "fill_container",
+              "stroke": {
+                "align": "inside",
+                "thickness": {
+                  "right": 1,
+                  "bottom": 1
+                },
+                "fill": "$--sidebar-border"
+              },
+              "gap": 6,
+              "padding": [
+                0,
+                14
+              ],
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "dtw",
+                  "fill": "$--muted-foreground",
+                  "content": "Workout Log",
+                  "fontFamily": "Inter",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "dtx",
+              "name": "tabSpacer",
+              "width": "fill_container",
+              "height": "fill_container",
+              "stroke": {
+                "align": "inside",
+                "thickness": {
+                  "bottom": 1
+                },
+                "fill": "$--border"
+              }
+            },
+            {
+              "type": "frame",
+              "id": "dty",
+              "name": "tabControls",
+              "height": "fill_container",
+              "stroke": {
+                "align": "inside",
+                "thickness": {
+                  "bottom": 1,
+                  "left": 1
+                },
+                "fill": "$--border"
+              },
+              "gap": 12,
+              "padding": [
+                0,
+                12
+              ],
+              "justifyContent": "space_around",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon_font",
+                  "id": "dtz",
+                  "width": 16,
+                  "height": 16,
+                  "iconFontName": "plus",
+                  "iconFontFamily": "phosphor",
+                  "fill": "$--muted-foreground"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "dt10",
+          "name": "dragNote",
+          "content": "Drop indicator: 2px $--primary bar shows insertion point. Dragged tab has opacity: 0.5.",
+          "fontFamily": "Inter",
+          "fontSize": 10,
+          "fontWeight": "normal",
+          "fill": "$--muted-foreground",
+          "padding": [
+            4,
+            12
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "dt11",
+      "name": "Draggable Tabs — After Drop (Reordered)",
+      "width": 800,
+      "height": 120,
+      "layout": "vertical",
+      "fill": "$--sidebar",
+      "theme": {
+        "Mode": "Light"
+      },
+      "children": [
+        {
+          "type": "text",
+          "id": "dt12",
+          "name": "frameLabel3",
+          "content": "After drop: \"Portfolio Rewrite\" moved before \"Laputa App\". Order persisted to localStorage.",
+          "fontFamily": "Inter",
+          "fontSize": 11,
+          "fontWeight": "normal",
+          "fill": "$--muted-foreground",
+          "padding": [
+            8,
+            12
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "dt13",
+          "name": "Tab Bar Reordered",
+          "width": "fill_container",
+          "height": 45,
+          "fill": "$--sidebar",
+          "stroke": {
+            "align": "inside",
+            "thickness": {
+              "bottom": 1
+            },
+            "fill": "$--sidebar-border"
+          },
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "dt14",
+              "name": "Tab Inactive (moved)",
+              "height": "fill_container",
+              "stroke": {
+                "align": "inside",
+                "thickness": {
+                  "right": 1,
+                  "bottom": 1
+                },
+                "fill": "$--sidebar-border"
+              },
+              "gap": 6,
+              "padding": [
+                0,
+                14
+              ],
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "dt15",
+                  "fill": "$--muted-foreground",
+                  "content": "Portfolio Rewrite",
+                  "fontFamily": "Inter",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "icon_font",
+                  "id": "dt16",
+                  "opacity": 0,
+                  "width": 14,
+                  "height": 14,
+                  "iconFontName": "x",
+                  "iconFontFamily": "lucide",
+                  "fill": "$--muted-foreground"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "dt17",
+              "name": "Tab Active",
+              "height": "fill_container",
+              "fill": "$--background",
+              "stroke": {
+                "align": "inside",
+                "thickness": {
+                  "right": 1
+                },
+                "fill": "$--border"
+              },
+              "gap": 6,
+              "padding": [
+                0,
+                14
+              ],
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "dt18",
+                  "fill": "$--foreground",
+                  "content": "Laputa App",
+                  "fontFamily": "Inter",
+                  "fontSize": 12,
+                  "fontWeight": "500"
+                },
+                {
+                  "type": "icon_font",
+                  "id": "dt19",
+                  "width": 14,
+                  "height": 14,
+                  "iconFontName": "x",
+                  "iconFontFamily": "lucide",
+                  "fill": "$--muted-foreground"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "dt1a",
+              "name": "Tab Inactive 2",
+              "height": "fill_container",
+              "stroke": {
+                "align": "inside",
+                "thickness": {
+                  "right": 1,
+                  "bottom": 1
+                },
+                "fill": "$--sidebar-border"
+              },
+              "gap": 6,
+              "padding": [
+                0,
+                14
+              ],
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "dt1b",
+                  "fill": "$--muted-foreground",
+                  "content": "Weekly Review",
+                  "fontFamily": "Inter",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "icon_font",
+                  "id": "dt1c",
+                  "opacity": 0,
+                  "width": 14,
+                  "height": 14,
+                  "iconFontName": "x",
+                  "iconFontFamily": "lucide",
+                  "fill": "$--muted-foreground"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "dt1d",
+              "name": "Tab Inactive 3",
+              "height": "fill_container",
+              "stroke": {
+                "align": "inside",
+                "thickness": {
+                  "right": 1,
+                  "bottom": 1
+                },
+                "fill": "$--sidebar-border"
+              },
+              "gap": 6,
+              "padding": [
+                0,
+                14
+              ],
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "dt1e",
+                  "fill": "$--muted-foreground",
+                  "content": "Workout Log",
+                  "fontFamily": "Inter",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "icon_font",
+                  "id": "dt1f",
+                  "opacity": 0,
+                  "width": 14,
+                  "height": 14,
+                  "iconFontName": "x",
+                  "iconFontFamily": "lucide",
+                  "fill": "$--muted-foreground"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "dt1g",
+              "name": "tabSpacer",
+              "width": "fill_container",
+              "height": "fill_container",
+              "stroke": {
+                "align": "inside",
+                "thickness": {
+                  "bottom": 1
+                },
+                "fill": "$--border"
+              }
+            },
+            {
+              "type": "frame",
+              "id": "dt1h",
+              "name": "tabControls",
+              "height": "fill_container",
+              "stroke": {
+                "align": "inside",
+                "thickness": {
+                  "bottom": 1,
+                  "left": 1
+                },
+                "fill": "$--border"
+              },
+              "gap": 12,
+              "padding": [
+                0,
+                12
+              ],
+              "justifyContent": "space_around",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon_font",
+                  "id": "dt1i",
+                  "width": 16,
+                  "height": 16,
+                  "iconFontName": "plus",
+                  "iconFontFamily": "phosphor",
+                  "fill": "$--muted-foreground"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "dt1j",
+          "name": "persistNote",
+          "content": "localStorage key: \"laputa-tab-order\" stores path array. Restored on next session.",
+          "fontFamily": "Inter",
+          "fontSize": 10,
+          "fontWeight": "normal",
+          "fill": "$--muted-foreground",
+          "padding": [
+            4,
+            12
+          ]
+        }
+      ]
     }
   ],
   "themes": {
