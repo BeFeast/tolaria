@@ -239,7 +239,7 @@ describe('Sidebar', () => {
     const onCreateType = vi.fn()
     render(<Sidebar entries={mockEntries} selection={defaultSelection} onSelect={() => {}} onCreateType={onCreateType} />)
     const createButtons = screen.getAllByTitle(/^New /)
-    expect(createButtons.length).toBe(7) // Projects, Experiments, Responsibilities, Procedures, People, Events, Topics
+    expect(createButtons.length).toBe(8) // Projects, Experiments, Responsibilities, Procedures, People, Events, Topics, Types
   })
 
   it('calls onCreateType with correct type when + button is clicked', () => {
