@@ -10184,6 +10184,213 @@
           ]
         }
       ]
+    },
+    {
+      "type": "frame",
+      "id": "mb001",
+      "x": 0,
+      "y": 0,
+      "name": "macOS Border — Before (no border)",
+      "theme": {
+        "Mode": "Light"
+      },
+      "clip": true,
+      "width": 400,
+      "height": 200,
+      "fill": "$--background",
+      "layout": "vertical",
+      "children": [
+        {
+          "type": "frame",
+          "id": "mb002",
+          "name": "macOS Title Bar (before)",
+          "width": "fill_container",
+          "height": 38,
+          "fill": "$--sidebar",
+          "gap": 12,
+          "padding": [
+            0,
+            12
+          ],
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "mb003",
+              "name": "trafficLights",
+              "gap": 8,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "ellipse",
+                  "id": "mb004",
+                  "fill": "#FF5F57",
+                  "width": 12,
+                  "height": 12
+                },
+                {
+                  "type": "ellipse",
+                  "id": "mb005",
+                  "fill": "#FEBC2E",
+                  "width": 12,
+                  "height": 12
+                },
+                {
+                  "type": "ellipse",
+                  "id": "mb006",
+                  "fill": "#28C840",
+                  "width": 12,
+                  "height": 12
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "mb007",
+          "name": "Sidebar Content (before)",
+          "width": "fill_container",
+          "height": "fill_container",
+          "fill": "$--sidebar",
+          "padding": [
+            8,
+            12
+          ],
+          "layout": "vertical",
+          "gap": 4,
+          "children": [
+            {
+              "type": "text",
+              "id": "mb008",
+              "value": "All Notes",
+              "fontSize": 14,
+              "fill": "$--foreground"
+            },
+            {
+              "type": "text",
+              "id": "mb009",
+              "value": "Favorites",
+              "fontSize": 14,
+              "fill": "$--foreground"
+            },
+            {
+              "type": "text",
+              "id": "mb010",
+              "value": "Archive",
+              "fontSize": 14,
+              "fill": "$--muted-foreground"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "mb011",
+      "x": 440,
+      "y": 0,
+      "name": "macOS Border — After (with border)",
+      "theme": {
+        "Mode": "Light"
+      },
+      "clip": true,
+      "width": 400,
+      "height": 200,
+      "fill": "$--background",
+      "layout": "vertical",
+      "children": [
+        {
+          "type": "frame",
+          "id": "mb012",
+          "name": "macOS Title Bar (after)",
+          "width": "fill_container",
+          "height": 38,
+          "fill": "$--sidebar",
+          "stroke": {
+            "align": "inside",
+            "thickness": {
+              "bottom": 1
+            },
+            "fill": "$--border"
+          },
+          "gap": 12,
+          "padding": [
+            0,
+            12
+          ],
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "mb013",
+              "name": "trafficLights",
+              "gap": 8,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "ellipse",
+                  "id": "mb014",
+                  "fill": "#FF5F57",
+                  "width": 12,
+                  "height": 12
+                },
+                {
+                  "type": "ellipse",
+                  "id": "mb015",
+                  "fill": "#FEBC2E",
+                  "width": 12,
+                  "height": 12
+                },
+                {
+                  "type": "ellipse",
+                  "id": "mb016",
+                  "fill": "#28C840",
+                  "width": 12,
+                  "height": 12
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "mb017",
+          "name": "Sidebar Content (after)",
+          "width": "fill_container",
+          "height": "fill_container",
+          "fill": "$--sidebar",
+          "padding": [
+            8,
+            12
+          ],
+          "layout": "vertical",
+          "gap": 4,
+          "children": [
+            {
+              "type": "text",
+              "id": "mb018",
+              "value": "All Notes",
+              "fontSize": 14,
+              "fill": "$--foreground"
+            },
+            {
+              "type": "text",
+              "id": "mb019",
+              "value": "Favorites",
+              "fontSize": 14,
+              "fill": "$--foreground"
+            },
+            {
+              "type": "text",
+              "id": "mb020",
+              "value": "Archive",
+              "fontSize": 14,
+              "fill": "$--muted-foreground"
+            }
+          ]
+        }
+      ]
     }
   ],
   "themes": {
