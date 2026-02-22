@@ -11,8 +11,8 @@ import { useCallback, useRef, useState } from 'react'
 const DEFAULT_WS_URL = 'ws://localhost:9710'
 
 interface PendingRequest {
-  resolve: (value: any) => void
-  reject: (reason: any) => void
+  resolve: (value: unknown) => void
+  reject: (reason: unknown) => void
 }
 
 interface SearchResult {
@@ -68,7 +68,7 @@ export function useMcpBridge(wsUrl = DEFAULT_WS_URL) {
     })
   }, [wsUrl])
 
-  const callTool = useCallback(async <T>(tool: string, args: Record<string, any>): Promise<T> => {
+  const callTool = useCallback(async <T>(tool: string, args: Record<string, unknown>): Promise<T> => {
     const ws = await ensureConnection()
     const id = `mcp-${++idCounterRef.current}`
 

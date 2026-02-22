@@ -238,7 +238,7 @@ export const Editor = memo(function Editor({
     },
   })
   // Cache parsed blocks per tab path for instant switching
-  const tabCacheRef = useRef<Map<string, any[]>>(new Map())
+  const tabCacheRef = useRef<Map<string, unknown[]>>(new Map())
   const prevActivePathRef = useRef<string | null>(null)
   const editorMountedRef = useRef(false)
   const pendingSwapRef = useRef<(() => void) | null>(null)
@@ -281,7 +281,7 @@ export const Editor = memo(function Editor({
     const tab = tabs.find(t => t.entry.path === activeTabPath)
     if (!tab) return
 
-    const applyBlocks = (blocks: any[]) => {
+    const applyBlocks = (blocks: unknown[]) => {
       try {
         const current = editor.document
         if (current.length > 0 && blocks.length > 0) {
@@ -317,7 +317,7 @@ export const Editor = memo(function Editor({
 
       try {
         const result = editor.tryParseMarkdownToBlocks(preprocessed)
-        const handleBlocks = (blocks: any[]) => {
+        const handleBlocks = (blocks: unknown[]) => {
           if (prevActivePathRef.current !== targetPath) return
           const withWikilinks = injectWikilinks(blocks)
           // Only cache non-empty results to avoid poisoning the cache
@@ -326,12 +326,12 @@ export const Editor = memo(function Editor({
           }
           applyBlocks(withWikilinks)
         }
-        if (result && typeof (result as any).then === 'function') {
-          (result as unknown as Promise<any[]>).then(handleBlocks).catch((err) => {
+        if (result && typeof (result as Promise<unknown[]>).then === 'function') {
+          (result as Promise<unknown[]>).then(handleBlocks).catch((err) => {
             console.error('Async markdown parse failed:', err)
           })
         } else {
-          handleBlocks(result as any[])
+          handleBlocks(result as unknown[])
         }
       } catch (err) {
         console.error('Failed to parse/swap editor content:', err)

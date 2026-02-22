@@ -1641,6 +1641,7 @@ index abc1234..${shortHash} 100644
 
 let mockHasChanges = true
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any -- mock handler map accepts heterogeneous arg types
 const mockHandlers: Record<string, (args: any) => any> = {
   list_vault: () => MOCK_ENTRIES,
   get_note_content: (args: { path: string }) => MOCK_CONTENT[args.path] ?? '',
@@ -1656,7 +1657,7 @@ const mockHandlers: Record<string, (args: any) => any> = {
   git_push: () => {
     return 'Everything up-to-date'
   },
-  ai_chat: (args: { request: { messages: any[]; model?: string; system?: string } }) => {
+  ai_chat: (args: { request: { messages: { role: string; content: string }[]; model?: string; system?: string } }) => {
     const lastMsg = args.request.messages[args.request.messages.length - 1]?.content ?? ''
     const lower = lastMsg.toLowerCase()
     let content = `I can help you with that. Could you provide more details about what you'd like to know?`
@@ -1742,7 +1743,7 @@ export function updateMockContent(path: string, content: string) {
   }
 }
 
-export async function mockInvoke<T>(cmd: string, args?: any): Promise<T> {
+export async function mockInvoke<T>(cmd: string, args?: Record<string, unknown>): Promise<T> {
   // Try the vault API first for commands that read vault data
   const apiAvailable = await checkVaultApi()
   if (apiAvailable) {

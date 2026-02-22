@@ -177,8 +177,8 @@ export async function streamChat(
 
     await readSseStream(reader, onChunk)
     onDone()
-  } catch (err: any) {
-    onError(err.message || 'Network error')
+  } catch (err: unknown) {
+    onError(err instanceof Error ? err.message : 'Network error')
   }
 }
 
