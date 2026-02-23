@@ -4,7 +4,8 @@ import { cn } from '@/lib/utils'
 import { SlidersHorizontal, X } from '@phosphor-icons/react'
 import { parseFrontmatter } from '../utils/frontmatter'
 import { DynamicPropertiesPanel } from './DynamicPropertiesPanel'
-import { DynamicRelationshipsPanel, BacklinksPanel, GitHistoryPanel } from './InspectorPanels'
+import { DynamicRelationshipsPanel, BacklinksPanel, ReferencedByPanel, GitHistoryPanel, wikilinkTarget } from './InspectorPanels'
+import type { ReferencedByItem } from './InspectorPanels'
 
 export type FrontmatterValue = string | number | boolean | string[] | null
 
@@ -40,6 +41,35 @@ function useBacklinks(entry: VaultEntry | null, entries: VaultEntry[], allConten
   }, [entry, entries, allContent])
 }
 
+function useReferencedBy(entry: VaultEntry | null, entries: VaultEntry[]): ReferencedByItem[] {
+  return useMemo(() => {
+    if (!entry) return []
+
+    const pathStem = entry.path.replace(/^.*\/Laputa\//, '').replace(/\.md$/, '')
+    const filenameStem = entry.filename.replace(/\.md$/, '')
+    const matchTargets = new Set([pathStem, filenameStem, entry.title, ...entry.aliases])
+
+    const results: ReferencedByItem[] = []
+
+    for (const other of entries) {
+      if (other.path === entry.path) continue
+
+      for (const [key, refs] of Object.entries(other.relationships)) {
+        if (key === 'Type') continue
+        for (const ref of refs) {
+          const target = wikilinkTarget(ref)
+          if (matchTargets.has(target) || matchTargets.has(target.split('/').pop() ?? '')) {
+            results.push({ entry: other, viaKey: key })
+            break
+          }
+        }
+      }
+    }
+
+    return results
+  }, [entry, entries])
+}
+
 function InspectorHeader({ collapsed, onToggle }: { collapsed: boolean; onToggle: () => void }) {
   return (
     <div className="flex items-center border-b border-border" style={{ height: 45, padding: '0 12px', gap: 8 }} data-tauri-drag-region>
@@ -66,6 +96,10 @@ function EmptyInspector() {
       <div><p className="m-0 text-[13px] text-muted-foreground">No note selected</p></div>
       <div><p className="m-0 text-[13px] text-muted-foreground">No relationships</p></div>
       <div>
+        <h4 className="font-mono-overline mb-2 text-muted-foreground">Referenced by</h4>
+        <p className="m-0 text-[13px] text-muted-foreground">No references</p>
+      </div>
+      <div>
         <h4 className="font-mono-overline mb-2 text-muted-foreground">Backlinks</h4>
         <p className="m-0 text-[13px] text-muted-foreground">No backlinks</p>
       </div>
@@ -82,6 +116,7 @@ export function Inspector({
   onViewCommitDiff, onUpdateFrontmatter, onDeleteProperty, onAddProperty,
 }: InspectorProps) {
   const backlinks = useBacklinks(entry, entries, allContent)
+  const referencedBy = useReferencedBy(entry, entries)
   const frontmatter = useMemo(() => parseFrontmatter(content), [content])
 
   const handleUpdateProperty = useCallback((key: string, value: FrontmatterValue) => {
@@ -111,6 +146,7 @@ export function Inspector({
                 onNavigate={onNavigate}
               />
               <DynamicRelationshipsPanel frontmatter={frontmatter} entries={entries} onNavigate={onNavigate} onAddProperty={onAddProperty ? handleAddProperty : undefined} />
+              <ReferencedByPanel items={referencedBy} onNavigate={onNavigate} />
               <BacklinksPanel backlinks={backlinks} onNavigate={onNavigate} />
               <GitHistoryPanel commits={gitHistory} onViewCommitDiff={onViewCommitDiff} />
             </>

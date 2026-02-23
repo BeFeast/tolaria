@@ -32,7 +32,7 @@ function wikilinkDisplay(ref: string): string {
   return last.replace(/-/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase())
 }
 
-function wikilinkTarget(ref: string): string {
+export function wikilinkTarget(ref: string): string {
   const inner = ref.replace(/^\[\[|\]\]$/g, '')
   const pipeIdx = inner.indexOf('|')
   return pipeIdx !== -1 ? inner.slice(0, pipeIdx) : inner
@@ -209,6 +209,62 @@ export function BacklinksPanel({ backlinks, onNavigate }: { backlinks: VaultEntr
           <div className="flex flex-col gap-0.5">
             {backlinks.map((e) => (
               <LinkButton key={e.path} label={e.title} typeColor={e.isA ? getTypeColor(e.isA) : 'var(--accent-blue)'} isArchived={e.archived} isTrashed={e.trashed} onClick={() => onNavigate(e.title)} title={e.trashed ? 'Trashed' : e.archived ? 'Archived' : undefined} TypeIcon={getTypeIcon(e.isA ?? undefined)} />
+            ))}
+          </div>
+        )
+      }
+    </div>
+  )
+}
+
+export interface ReferencedByItem {
+  entry: VaultEntry
+  viaKey: string
+}
+
+export function ReferencedByPanel({ items, onNavigate }: {
+  items: ReferencedByItem[]
+  onNavigate: (target: string) => void
+}) {
+  const grouped = useMemo(() => {
+    const map = new Map<string, VaultEntry[]>()
+    for (const item of items) {
+      const existing = map.get(item.viaKey)
+      if (existing) existing.push(item.entry)
+      else map.set(item.viaKey, [item.entry])
+    }
+    return Array.from(map.entries())
+  }, [items])
+
+  return (
+    <div>
+      <h4 className="font-mono-overline mb-2 text-muted-foreground">
+        Referenced by {items.length > 0 && <span className="ml-1" style={{ fontWeight: 400 }}>{items.length}</span>}
+      </h4>
+      {items.length === 0
+        ? <p className="m-0 text-[13px] text-muted-foreground">No references</p>
+        : (
+          <div className="flex flex-col gap-2.5">
+            {grouped.map(([viaKey, groupEntries]) => (
+              <div key={viaKey}>
+                <span className="mb-1 block font-mono text-muted-foreground" style={{ fontSize: 9, fontWeight: 600, letterSpacing: '1.2px', textTransform: 'uppercase', opacity: 0.7 }}>
+                  via {viaKey}
+                </span>
+                <div className="flex flex-col gap-0.5">
+                  {groupEntries.map((e) => (
+                    <LinkButton
+                      key={e.path}
+                      label={e.title}
+                      typeColor={e.isA ? getTypeColor(e.isA) : 'var(--accent-blue)'}
+                      isArchived={e.archived}
+                      isTrashed={e.trashed}
+                      onClick={() => onNavigate(e.title)}
+                      title={e.trashed ? 'Trashed' : e.archived ? 'Archived' : undefined}
+                      TypeIcon={getTypeIcon(e.isA ?? undefined)}
+                    />
+                  ))}
+                </div>
+              </div>
             ))}
           </div>
         )
