@@ -134,6 +134,49 @@ fn clone_repo(url: String, token: String, local_path: String) -> Result<String, 
     github::clone_repo(&url, &token, &local_path)
 }
 
+#[tauri::command]
+fn create_vault_dir(path: String) -> Result<(), String> {
+    std::fs::create_dir_all(&path).map_err(|e| format!("Failed to create directory: {e}"))
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_create_vault_dir_creates_directory() {
+        let tmp = tempfile::tempdir().unwrap();
+        let vault_path = tmp.path().join("my-new-vault");
+        assert!(!vault_path.exists());
+
+        let result = create_vault_dir(vault_path.to_string_lossy().to_string());
+        assert!(result.is_ok());
+        assert!(vault_path.is_dir());
+    }
+
+    #[test]
+    fn test_create_vault_dir_nested_path() {
+        let tmp = tempfile::tempdir().unwrap();
+        let vault_path = tmp.path().join("deep/nested/vault");
+        assert!(!vault_path.exists());
+
+        let result = create_vault_dir(vault_path.to_string_lossy().to_string());
+        assert!(result.is_ok());
+        assert!(vault_path.is_dir());
+    }
+
+    #[test]
+    fn test_create_vault_dir_existing_dir_ok() {
+        let tmp = tempfile::tempdir().unwrap();
+        let vault_path = tmp.path().join("existing");
+        std::fs::create_dir(&vault_path).unwrap();
+
+        // Calling create_vault_dir on an existing dir should succeed
+        let result = create_vault_dir(vault_path.to_string_lossy().to_string());
+        assert!(result.is_ok());
+    }
+}
+
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
     tauri::Builder::default()
@@ -145,6 +188,8 @@ pub fn run() {
                         .build(),
                 )?;
             }
+
+            app.handle().plugin(tauri_plugin_dialog::init())?;
 
             #[cfg(desktop)]
             {
@@ -204,7 +249,8 @@ pub fn run() {
             save_settings,
             github_list_repos,
             github_create_repo,
-            clone_repo
+            clone_repo,
+            create_vault_dir
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
