@@ -1,5 +1,5 @@
 export const MIN_QUERY_LENGTH = 2
-export const MAX_RESULTS = 20
+export const MAX_RESULTS = 10
 
 export interface WikilinkBaseItem {
   title: string

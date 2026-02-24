@@ -77,8 +77,8 @@ describe('constants', () => {
     expect(MIN_QUERY_LENGTH).toBe(2)
   })
 
-  it('MAX_RESULTS is 20', () => {
-    expect(MAX_RESULTS).toBe(20)
+  it('MAX_RESULTS is 10', () => {
+    expect(MAX_RESULTS).toBe(10)
   })
 })
 

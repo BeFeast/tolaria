@@ -16,6 +16,8 @@ import { useEditorTheme } from '../hooks/useTheme'
 import { splitFrontmatter, preProcessWikilinks, injectWikilinks, restoreWikilinksInBlocks, countWords } from '../utils/wikilinks'
 import { preFilterWikilinks, deduplicateByPath, disambiguateTitles, MAX_RESULTS, MIN_QUERY_LENGTH } from '../utils/wikilinkSuggestions'
 import { resolveWikilinkColor as resolveColor } from '../utils/wikilinkColors'
+import { getTypeColor } from '../utils/typeColors'
+import { WikilinkSuggestionMenu, type WikilinkSuggestionItem } from './WikilinkSuggestionMenu'
 import './Editor.css'
 import './EditorTheme.css'
 
@@ -142,7 +144,7 @@ function SingleEditorView({ editor, entries, onNavigateWikilink, onChange }: { e
     [entries]
   )
 
-  const getWikilinkItems = useCallback(async (query: string) => {
+  const getWikilinkItems = useCallback(async (query: string): Promise<WikilinkSuggestionItem[]> => {
     if (query.length < MIN_QUERY_LENGTH) return []
 
     const candidates = preFilterWikilinks(baseItems, query)
@@ -159,7 +161,12 @@ function SingleEditorView({ editor, entries, onNavigateWikilink, onChange }: { e
       },
     }))
     const filtered = filterSuggestionItems(items, query).slice(0, MAX_RESULTS)
-    return disambiguateTitles(deduplicateByPath(filtered))
+    const final = disambiguateTitles(deduplicateByPath(filtered))
+    return final.map(({ group, ...rest }) => ({
+      ...rest,
+      noteType: group !== 'Note' ? group : undefined,
+      typeColor: group !== 'Note' ? getTypeColor(group) : undefined,
+    }))
   }, [baseItems, editor])
 
   return (
@@ -177,6 +184,8 @@ function SingleEditorView({ editor, entries, onNavigateWikilink, onChange }: { e
         <SuggestionMenuController
           triggerCharacter="[["
           getItems={getWikilinkItems}
+          suggestionMenuComponent={WikilinkSuggestionMenu}
+          onItemClick={(item: WikilinkSuggestionItem) => item.onItemClick()}
         />
       </BlockNoteView>
     </div>
