@@ -172,11 +172,11 @@ function GitHubSection({ githubUsername, githubToken, onConnected, onDisconnect 
       pollLoop().catch(err => {
         stopPolling()
         setOauthStatus('error')
-        setErrorMessage(err instanceof Error ? err.message : 'Polling failed.')
+        setErrorMessage(typeof err === 'string' ? err : err instanceof Error ? err.message : 'Polling failed.')
       })
     } catch (err) {
       setOauthStatus('error')
-      setErrorMessage(err instanceof Error ? err.message : 'Failed to start login.')
+      setErrorMessage(typeof err === 'string' ? err : err instanceof Error ? err.message : 'Failed to start login.')
     }
   }, [onConnected, stopPolling])
 
