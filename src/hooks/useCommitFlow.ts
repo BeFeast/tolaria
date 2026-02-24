@@ -1,7 +1,7 @@
 import { useCallback, useState } from 'react'
 
 interface CommitFlowConfig {
-  savePending: () => Promise<void>
+  savePending: () => Promise<void | boolean>
   loadModifiedFiles: () => Promise<void>
   commitAndPush: (message: string) => Promise<string>
   setToastMessage: (msg: string | null) => void
