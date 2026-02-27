@@ -12,6 +12,8 @@ vi.mock('../mock-tauri', () => ({
 import { mockInvoke } from '../mock-tauri'
 const mockInvokeFn = vi.mocked(mockInvoke)
 
+const NOW = Math.floor(Date.now() / 1000)
+
 const MOCK_ENTRIES: VaultEntry[] = [
   {
     path: '/vault/essay/ai-apis.md',
@@ -27,16 +29,16 @@ const MOCK_ENTRIES: VaultEntry[] = [
     archived: false,
     trashed: false,
     trashedAt: null,
-    modifiedAt: Date.now() / 1000,
-    createdAt: Date.now() / 1000,
+    modifiedAt: NOW - 7200,
+    createdAt: NOW - 86400 * 30,
     fileSize: 500,
     snippet: 'A guide to designing APIs for AI',
-    wordCount: 0,
+    wordCount: 1247,
     relationships: {},
     icon: null,
     color: null,
     order: null,
-    outgoingLinks: [],
+    outgoingLinks: ['topic/ai', 'topic/api-design', 'person/luca'],
   },
   {
     path: '/vault/event/retreat.md',
@@ -52,16 +54,16 @@ const MOCK_ENTRIES: VaultEntry[] = [
     archived: false,
     trashed: false,
     trashedAt: null,
-    modifiedAt: Date.now() / 1000,
-    createdAt: Date.now() / 1000,
+    modifiedAt: NOW - 86400 * 5,
+    createdAt: NOW - 86400 * 5,
     fileSize: 300,
     snippet: 'Team retreat event',
-    wordCount: 0,
+    wordCount: 856,
     relationships: {},
     icon: null,
     color: null,
     order: null,
-    outgoingLinks: [],
+    outgoingLinks: ['person/bob'],
   },
 ]
 
@@ -267,6 +269,49 @@ describe('SearchPanel', () => {
 
     await waitFor(() => {
       expect(screen.getByText('Essay')).toBeInTheDocument()
+    })
+  })
+
+  it('shows metadata subtitle with word count and links', async () => {
+    mockInvokeFn.mockResolvedValue({
+      results: [
+        { title: 'How to Design AI-first APIs', path: '/vault/essay/ai-apis.md', snippet: 'Content', score: 0.9, note_type: null },
+      ],
+      elapsed_ms: 20,
+    })
+
+    render(
+      <SearchPanel open={true} vaultPath="/vault" entries={MOCK_ENTRIES} onSelectNote={vi.fn()} onClose={vi.fn()} />,
+    )
+
+    fireEvent.change(screen.getByPlaceholderText('Search in all notes...'), { target: { value: 'api' } })
+
+    await waitFor(() => {
+      expect(screen.getByText(/1,247 words/)).toBeInTheDocument()
+      expect(screen.getByText(/3 links/)).toBeInTheDocument()
+    })
+  })
+
+  it('omits links from subtitle when entry has zero outgoing links', async () => {
+    const noLinksEntries = MOCK_ENTRIES.map(e =>
+      e.path === '/vault/essay/ai-apis.md' ? { ...e, outgoingLinks: [] } : e,
+    )
+    mockInvokeFn.mockResolvedValue({
+      results: [
+        { title: 'How to Design AI-first APIs', path: '/vault/essay/ai-apis.md', snippet: '', score: 0.9, note_type: null },
+      ],
+      elapsed_ms: 20,
+    })
+
+    render(
+      <SearchPanel open={true} vaultPath="/vault" entries={noLinksEntries} onSelectNote={vi.fn()} onClose={vi.fn()} />,
+    )
+
+    fireEvent.change(screen.getByPlaceholderText('Search in all notes...'), { target: { value: 'api' } })
+
+    await waitFor(() => {
+      expect(screen.getByText(/1,247 words/)).toBeInTheDocument()
+      expect(screen.queryByText(/links/)).not.toBeInTheDocument()
     })
   })
 
