@@ -239,6 +239,14 @@ function App() {
     await notes.handleRenameNote(path, newTitle, vaultSwitcher.vaultPath, vault.replaceEntry).then(vault.loadModifiedFiles)
   }, [notes, vaultSwitcher.vaultPath, vault, savePendingForPath])
 
+  /** H1→title sync: update VaultEntry.title and tab entry in memory. */
+  const handleTitleSync = useCallback((path: string, newTitle: string) => {
+    vault.updateEntry(path, { title: newTitle })
+    notes.setTabs(prev => prev.map(t =>
+      t.entry.path === path ? { ...t, entry: { ...t.entry, title: newTitle } } : t
+    ))
+  }, [vault, notes])
+
   const bulkActions = useBulkActions(entryActions, setToastMessage)
 
   const { setViewMode, sidebarVisible, noteListVisible } = useViewMode()
@@ -320,6 +328,7 @@ function App() {
             onUnarchiveNote={entryActions.handleUnarchiveNote}
             onRenameTab={handleRenameTab}
             onContentChange={handleContentChange}
+            onTitleSync={handleTitleSync}
             canGoBack={navHistory.canGoBack}
             canGoForward={navHistory.canGoForward}
             onGoBack={handleGoBack}
