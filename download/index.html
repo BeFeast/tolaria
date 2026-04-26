@@ -5,8 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tolaria Stable Download</title>
     <script>
-      const DOWNLOAD_TARGETS = {"darwin-aarch64":{"buttonLabel":"Download Tolaria for macOS","label":"macOS","url":"https://github.com/refactoringhq/tolaria/releases/download/stable-v2026.4.25/Tolaria_2026.4.25_aarch64.dmg"},"linux-x86_64":{"buttonLabel":"Download Tolaria for Linux","label":"Linux","url":"https://github.com/refactoringhq/tolaria/releases/download/stable-v2026.4.25/Tolaria_2026.4.25_amd64.AppImage"},"windows-x86_64":{"buttonLabel":"Download Tolaria for Windows","label":"Windows","url":"https://github.com/refactoringhq/tolaria/releases/download/stable-v2026.4.25/Tolaria_2026.4.25_x64-setup.exe"}};
-      const PLATFORM_ORDER = ["darwin-aarch64","windows-x86_64","linux-x86_64"];
+      const DOWNLOAD_TARGETS = {"darwin-aarch64":{"buttonLabel":"Download Tolaria for macOS Apple Silicon","label":"macOS Apple Silicon","url":"https://github.com/refactoringhq/tolaria/releases/download/stable-v2026.4.25/Tolaria_2026.4.25_aarch64.dmg"},"linux-x86_64":{"buttonLabel":"Download Tolaria for Linux","label":"Linux","url":"https://github.com/refactoringhq/tolaria/releases/download/stable-v2026.4.25/Tolaria_2026.4.25_amd64.AppImage"},"windows-x86_64":{"buttonLabel":"Download Tolaria for Windows","label":"Windows","url":"https://github.com/refactoringhq/tolaria/releases/download/stable-v2026.4.25/Tolaria_2026.4.25_x64-setup.exe"}};
+      const PLATFORM_ORDER = ["darwin-aarch64","darwin-x86_64","windows-x86_64","linux-x86_64"];
+      const hasMultipleMacDownloads = Boolean(
+        DOWNLOAD_TARGETS['darwin-aarch64'] && DOWNLOAD_TARGETS['darwin-x86_64']
+      );
 
       function detectPlatform(userAgent) {
         if (/Windows/i.test(userAgent)) return 'windows-x86_64';
@@ -19,6 +22,7 @@
       const resolvedTarget = (
         detectedPlatform && DOWNLOAD_TARGETS[detectedPlatform]
       ) || DOWNLOAD_TARGETS[PLATFORM_ORDER.find((platform) => DOWNLOAD_TARGETS[platform])] || null;
+      const requiresMacChoice = hasMultipleMacDownloads && /Mac OS X|Macintosh/i.test(navigator.userAgent);
 
       if (resolvedTarget) {
         const link = document.getElementById('download-link');
@@ -28,9 +32,13 @@
           link.textContent = resolvedTarget.buttonLabel;
         }
         if (message) {
-          message.textContent = 'Redirecting to the latest stable Tolaria download for ' + resolvedTarget.label + '.';
+          message.textContent = requiresMacChoice
+            ? 'Choose the Apple Silicon or Intel Mac download below.'
+            : 'Redirecting to the latest stable Tolaria download for ' + resolvedTarget.label + '.';
         }
-        window.location.replace(resolvedTarget.url);
+        if (!requiresMacChoice) {
+          window.location.replace(resolvedTarget.url);
+        }
       }
     </script>
   <style>
@@ -144,9 +152,9 @@
     <p>If the download does not start automatically, use one of the platform links below.</p>
     
     <div class="button-list">
-      <a id="download-link" href="https://github.com/refactoringhq/tolaria/releases/download/stable-v2026.4.25/Tolaria_2026.4.25_aarch64.dmg">Download Tolaria for macOS</a>
+      <a id="download-link" href="https://github.com/refactoringhq/tolaria/releases/download/stable-v2026.4.25/Tolaria_2026.4.25_aarch64.dmg">Download Tolaria for macOS Apple Silicon</a>
     </div>
-    <div class="button-list"><a href="https://github.com/refactoringhq/tolaria/releases/download/stable-v2026.4.25/Tolaria_2026.4.25_aarch64.dmg" data-secondary="true">macOS</a><a href="https://github.com/refactoringhq/tolaria/releases/download/stable-v2026.4.25/Tolaria_2026.4.25_x64-setup.exe" data-secondary="true">Windows</a><a href="https://github.com/refactoringhq/tolaria/releases/download/stable-v2026.4.25/Tolaria_2026.4.25_amd64.AppImage" data-secondary="true">Linux</a></div>
+    <div class="button-list"><a href="https://github.com/refactoringhq/tolaria/releases/download/stable-v2026.4.25/Tolaria_2026.4.25_aarch64.dmg" data-secondary="true">macOS Apple Silicon</a><a href="https://github.com/refactoringhq/tolaria/releases/download/stable-v2026.4.25/Tolaria_2026.4.25_x64-setup.exe" data-secondary="true">Windows</a><a href="https://github.com/refactoringhq/tolaria/releases/download/stable-v2026.4.25/Tolaria_2026.4.25_amd64.AppImage" data-secondary="true">Linux</a></div>
     <div class="button-list">
       <a href="https://refactoringhq.github.io/tolaria/" data-secondary="true">View release history</a>
     </div>
